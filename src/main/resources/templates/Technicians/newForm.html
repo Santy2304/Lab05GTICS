@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{fragments/menu.html :: header( title = 'CreadoEditado')}"></head>
+    <body>
+        <div class="container">
+            <nav th:replace="~{fragments/menu.html :: menu}"></nav>
+            <div class="row mb-4">
+                <div class="col-md-6 offset-md-3">
+                    <h2>Tecnico</h2>
+                    <!--<div th:if="${errorCompany != null}" th:text="${errorCompany}" class="alert alert-danger"
+                         role="alert"></div>-->
+                    <hr/>
+                    <form method="post" th:action="@{'/guardar'}" th:object="${technician}">
+
+                        <input type="hidden" th:field="*{id}">
+
+                        <div class="mb-3">
+                            <label class="form-label">Nombre</label>
+                            <input th:field="*{firstName}" type="text" class="form-control" >
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Apellido</label>
+                            <input th:field="*{lastName}" type="text" class="form-control" >
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">DNI</label>
+                            <input th:field="*{dni}" type="text" class="form-control" >
+                        </div>
+                        <div class="mb-3">
+                            <label  class="form-label">Telefono</label>
+                            <input th:field="*{phone}" type="text" class="form-control" >
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Edad</label>
+                            <input th:field="*{age}" type="text" class="form-control" >
+                        </div>
+
+                        <a th:href="@{'/listarTecnicos'}" class="btn btn-danger">Cancelar</a>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
