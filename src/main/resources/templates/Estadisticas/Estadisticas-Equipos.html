@@ -13,19 +13,11 @@
              </form>-->
             <table class="table">
                 <tr>
-                    <th>#</th>
-                    <th>Nombre</th>
-                    <th>Tipo</th>
-                    <th>Modelo</th>
-                    <th>Número Serial</th>
+                    <th>Cantidad</th>
                     <th>País</th>
                 </tr>
-                <tr th:each="equipo, info : ${listaEquipos}">
-                    <td th:text="${info.index + 1}"></td>
-                    <td th:text="${equipo.deviceName}"></td>
-                    <td th:text="${equipo.deviceType}"></td>
-                    <td th:text="${equipo.model}"></td>
-                    <td th:text="${equipo.serialNumber}"></td>
+                <tr th:each="equipo: ${listaEquipos}">
+                    <td th:text="${equipo.cantidad}"></td>
                     <td th:text="${equipo.country}"></td>
 
                 </tr>

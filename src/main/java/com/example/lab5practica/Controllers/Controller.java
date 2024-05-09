@@ -61,18 +61,23 @@ public class Controller {
 
     }
 
-    @PostMapping("/save")
+    @PostMapping("/guardar")
     public String guardarNuevoTransportista(@ModelAttribute ("technician") @Valid Technician technician, BindingResult bindingResult, Model model, RedirectAttributes attr) {
 
+        if(bindingResult.hasErrors()){
 
-        if (technician.getId() == 0) {
-            attr.addFlashAttribute("msg", "Técnico"+technician.getFirstName() + " "+technician.getLastName()  +" creado exitosamente");
-        } else {
-            attr.addFlashAttribute("msg", "Técnico"+ technician.getFirstName() + " "+technician.getLastName()+" actualizado exitosamente");
+            return "Technicians/newForm";
+
+        }else{
+            if (technician.getId()==0) {
+                attr.addFlashAttribute("msg", "Técnico "+technician.getFirstName() + " "+technician.getLastName()  +" creado exitosamente");
+            } else {
+                attr.addFlashAttribute("msg", "Técnico "+ technician.getFirstName() + " "+technician.getLastName()+" actualizado exitosamente");
+            }
+            technicianRepository.save(technician);
+
+            return "redirect:/listarTecnicos";
         }
-        technicianRepository.save(technician);
-
-        return "redirect:/listarTecnicos";
 
     }
 
